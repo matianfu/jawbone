@@ -4,8 +4,8 @@
 		<cconfiguration id="cdt.managedbuild.config.gnu.cross.exe.debug.1980064746">
 			<storageModule buildSystemId="org.eclipse.cdt.managedbuilder.core.configurationDataProvider" id="cdt.managedbuild.config.gnu.cross.exe.debug.1980064746" moduleId="org.eclipse.cdt.core.settings" name="Debug">
 				<macros>
-					<stringMacro name="CPU_FLAGS_HARD" type="VALUE_TEXT" value="-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16"/>
 					<stringMacro name="CPU_FLAGS_SOFT" type="VALUE_TEXT" value="-mthumb -mcpu=cortex-m4 -mfloat-abi=soft"/>
+					<stringMacro name="CPU_FLAGS_HARD" type="VALUE_TEXT" value="-mthumb -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16"/>
 					<stringMacro name="CPU_FLAGS_SOFTFP" type="VALUE_TEXT" value="-mthumb -mcpu=cortex-m4 -mfloat-abi=softfp -mfpu=fpv4-sp-d16"/>
 					<stringMacro name="CPU_FLAGS" type="VALUE_TEXT" value="-mthumb -mcpu=cortex-m4 -mfloat-abi=soft"/>
 				</macros>
@@ -28,7 +28,7 @@
 							<targetPlatform archList="all" binaryParser="org.eclipse.cdt.core.ELF" id="cdt.managedbuild.targetPlatform.gnu.cross.1016325463" isAbstract="false" osList="all" superClass="cdt.managedbuild.targetPlatform.gnu.cross"/>
 							<builder buildPath="${workspace_loc:/jawbone}/Debug" id="cdt.managedbuild.builder.gnu.cross.1886211541" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.builder.gnu.cross"/>
 							<tool command="gcc -c ${CPU_FLAGS}" id="cdt.managedbuild.tool.gnu.cross.c.compiler.1368652771" name="Cross GCC Compiler" superClass="cdt.managedbuild.tool.gnu.cross.c.compiler">
-								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.2056423941" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.size" valueType="enumerated"/>
+								<option defaultValue="gnu.c.optimization.level.none" id="gnu.c.compiler.option.optimization.level.2056423941" name="Optimization Level" superClass="gnu.c.compiler.option.optimization.level" useByScannerDiscovery="false" value="gnu.c.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.debugging.level.1109594294" name="Debug Level" superClass="gnu.c.compiler.option.debugging.level" useByScannerDiscovery="false" value="gnu.c.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.c.compiler.option.include.paths.2074670367" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
 									<listOptionValue builtIn="false" value="/home/ma/stm32/Jawbone/source/jawbone/Project/Audio_playback_and_record/inc"/>
@@ -45,8 +45,8 @@
 									<listOptionValue builtIn="false" value="USE_STDPERIPH_DRIVER"/>
 									<listOptionValue builtIn="false" value="USE_USB_OTG_FS"/>
 									<listOptionValue builtIn="false" value="STM32F4XX"/>
-									<listOptionValue builtIn="false" value="MEDIA_USB_KEY"/>
 									<listOptionValue builtIn="false" value="__FPU_PRESENT=0"/>
+									<listOptionValue builtIn="false" value="MEDIA_USB_KEY"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.1417856633" superClass="cdt.managedbuild.tool.gnu.c.compiler.input"/>
 							</tool>

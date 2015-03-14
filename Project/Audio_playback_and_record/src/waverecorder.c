@@ -458,6 +458,149 @@ void WaveRecorderUpdate(void)
   
 }
 
+void WaveRecorderUpdateInRam(void)
+{
+  WaveRecorderInit(32000,16, 1);
+  WaveCounter = 0;
+  LED_Toggle = 7;
+
+#if 0
+
+  /* Remove Wave file if exist on flash disk */
+  f_unlink (REC_WAVE_NAME);
+
+  /* Open the file to write on it */
+  if ((HCD_IsDeviceConnected(&USB_OTG_Core) != 1) || (f_open(&file, REC_WAVE_NAME, FA_CREATE_ALWAYS | FA_WRITE) != FR_OK))
+  {
+    /* Set ON Red LED */
+    while(1)
+    {
+      STM_EVAL_LEDToggle(LED5);
+    }
+  }
+  else
+  {
+    WaveRecStatus = 1;
+  }
+
+
+
+  /* Initialize the Header Wave */
+  WavaRecorderHeaderInit(RecBufHeader);
+
+  /* Write the Header wave */
+  f_write (&file, RecBufHeader, 512, (void *)&bytesWritten);
+
+  /* Increment tne wave counter */
+  WaveCounter += 512;
+
+#endif
+
+  /* Start the record */
+  WaveRecorderStart(RecBuf, PCM_OUT_SIZE);
+
+  /* Reset the time base variable */
+  Time_Rec_Base = 0;
+  Switch = 0;
+
+//  while(HCD_IsDeviceConnected(&USB_OTG_Core))
+  while(1)
+  {
+    /* Wait for the recording time */
+    if (Time_Rec_Base <= TIME_REC)
+    {
+      /* Wait for the data to be ready with PCM form */
+//      while((Data_Status == 0)&& HCD_IsDeviceConnected(&USB_OTG_Core));
+      Data_Status =0;
+
+      /* Switch the buffers*/
+      if (Switch ==1)
+     {
+       pAudioRecBuf = RecBuf;
+       writebuffer = RecBuf1;
+       WaveCounter += 32;
+       Switch = 0;
+     }
+      else
+      {
+        pAudioRecBuf = RecBuf1;
+        writebuffer = RecBuf;
+        WaveCounter += 32;
+        Switch = 1;
+      }
+
+      for (counter=0; counter<16; counter++)
+      {
+        LED_Toggle = 3;
+        if (buf_idx< RAM_BUFFER_SIZE)
+        {
+          /* Store Data in RAM buffer */
+          RAM_Buf[buf_idx++]= *(writebuffer + counter);
+          if (buf_idx1 == RAM_BUFFER_SIZE)
+          {
+            buf_idx1 = 0;
+            /* Write the stored data in the RAm to the USB Key */
+            // f_write (&file, (uint16_t*)RAM_Buf1, RAM_BUFFER_SIZE*2 , (void *)&bytesWritten);
+          }
+        }
+        else if (buf_idx1< RAM_BUFFER_SIZE)
+        {
+          /* Store Data in RAM buffer */
+          RAM_Buf1[buf_idx1++]= *(writebuffer + counter);
+          if (buf_idx == RAM_BUFFER_SIZE)
+          {
+            buf_idx = 0;
+            /* Write the stored data in the RAM to the USB Key */
+            // f_write (&file, (uint16_t*)RAM_Buf, RAM_BUFFER_SIZE*2 , (void *)&bytesWritten);
+          }
+        }
+      }
+
+      /* User button pressed */
+      if ( Command_index != 1)
+      {
+        /* Stop recording */
+        WaveRecorderStop();
+        Command_index = 0;
+        LED_Toggle = 6;
+        break;
+      }
+    }
+    else /* End of Recording time  */
+    {
+      WaveRecorderStop();
+      LED_Toggle = 4;
+      Command_index = 2;
+      Data_Status =0;
+      break;
+    }
+  }
+
+#if 0
+
+  /* Update the data length in the header of the recorded wave */
+  f_lseek(&file, 0);
+
+  RecBufHeader[4] = (uint8_t)(WaveCounter + 512) ;
+  RecBufHeader[5] = (uint8_t)(((WaveCounter+512)  >> 8) & 0xFF);
+  RecBufHeader[6] = (uint8_t)(((WaveCounter+512)  >> 16) & 0xFF);
+  RecBufHeader[7] = (uint8_t)(((WaveCounter+512)  >> 24) & 0xFF);
+
+  RecBufHeader[40] = (uint8_t)(WaveCounter);
+  RecBufHeader[41] = (uint8_t)((WaveCounter >> 8) & 0xFF);
+  RecBufHeader[42] = (uint8_t)((WaveCounter >> 16) & 0xFF);
+  RecBufHeader[43] = (uint8_t)((WaveCounter >> 24) & 0xFF);
+
+  /* Write the updated header wave */
+  f_write (&file, RecBufHeader, 512, (void *)&bytesWritten);
+
+  /* Close file and filesystem */
+  f_close (&file);
+  f_mount(0, NULL);
+
+#endif
+}
+
 /**
   * @brief  Initialize GPIO for wave recorder.
   * @param  None

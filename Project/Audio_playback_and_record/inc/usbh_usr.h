@@ -74,6 +74,10 @@ extern void WaveRecorderUpdate(void);
 extern void Delay(__IO uint32_t nTime);
 extern void WavePlayer_CallBack(void);
 extern uint32_t WaveRecorderStop(void);
+
+/***********************************************************/
+extern void WaveRecorderUpdateInRam(void);
+
 #ifdef __cplusplus
 }
 #endif

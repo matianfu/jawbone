@@ -78,7 +78,12 @@ int main(void)
   
   /* Initialize User Button */
   STM_EVAL_PBInit(BUTTON_USER, BUTTON_MODE_EXTI);
-   
+
+  while (1) {
+    WaveRecorderUpdateInRam();
+  };
+
+#if 0
   /* Init Host Library */
   USBH_Init(&USB_OTG_Core, USB_OTG_FS_CORE_ID, &USB_Host, &USBH_MSC_cb, &USR_Callbacks);
   
@@ -90,6 +95,8 @@ int main(void)
   
 #endif
   
+#endif
+
 }
 
 /**

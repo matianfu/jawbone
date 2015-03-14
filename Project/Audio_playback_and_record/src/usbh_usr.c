@@ -63,8 +63,8 @@ USBH_Usr_cb_TypeDef USR_Callbacks =
   USBH_USR_UnrecoveredError
 };
 
-extern USB_OTG_CORE_HANDLE          USB_OTG_Core;
-extern __IO uint8_t AudioPlayStart ;
+// extern USB_OTG_CORE_HANDLE          USB_OTG_Core;
+// extern __IO uint8_t AudioPlayStart ;
 uint8_t joystick_use = 0x00;
 uint8_t lcdLineNo = 0x00;
 extern __IO uint8_t RepeatState ;

@@ -42,6 +42,9 @@ void Delay(__IO uint32_t nTime);
 void WaveRecorderUpdate(void);
 extern uint32_t ReadUnit(uint8_t *buffer, uint8_t idx, uint8_t NbrOfBytes, Endianness BytesFormat);
 
+/************************************/
+void WaveRecorderUpdateInRam(void);
+
 #endif /* __WAVE_RECORDER_H */
 
 /******************* (C) COPYRIGHT 2011 STMicroelectronics *****END OF FILE****/
