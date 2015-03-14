@@ -68,7 +68,7 @@ uint16_t buf_idx = 0, buf_idx1 =0;
 uint16_t *writebuffer;
 uint16_t counter = 0;
 uint8_t WaveRecStatus = 0;
-/* Current state of the audio recorder interface intialization */
+/* Current state of the audio recorder interface initialization */
 static uint32_t AudioRecInited = 0;
 PDMFilter_InitStruct Filter;
 /* Audio recording Samples format (from 8 to 16 bits) */
