@@ -54,6 +54,9 @@
 							</tool>
 							<tool command="gcc ${CPU_FLAGS}" id="cdt.managedbuild.tool.gnu.cross.c.linker.579260803" name="Cross GCC Linker" superClass="cdt.managedbuild.tool.gnu.cross.c.linker">
 								<option id="gnu.c.link.option.ldflags.1564268906" name="Linker flags" superClass="gnu.c.link.option.ldflags" value="-T&quot;${ProjDirPath}/stm32_flash.ld&quot;" valueType="string"/>
+								<option id="gnu.c.link.option.libs.1624420088" superClass="gnu.c.link.option.libs" valueType="libs">
+									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="/home/ma/stm32/Jawbone/source/jawbone/Utilities/STM32F4-Discovery/libPDMFilter_GCC.a"/>
+								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.linker.input.1795257066" superClass="cdt.managedbuild.tool.gnu.c.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>
 									<additionalInput kind="additionalinput" paths="$(LIBS)"/>

@@ -44,7 +44,7 @@
 
 #ifndef SEMIHOSTING
 
-extern int uart_write(int32_t file, uint8_t *ptr, int32_t len);
+// extern int uart_write(int32_t file, uint8_t *ptr, int32_t len);
 
 /* Variables */
 #undef errno
