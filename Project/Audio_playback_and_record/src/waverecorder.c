@@ -121,7 +121,8 @@ uint32_t WaveRecorderInit(uint32_t AudioFreq, uint32_t BitRes, uint32_t ChnlNbr)
     Filter.Out_MicChannels = 1;
     Filter.In_MicChannels = 1;
     
-    PDM_Filter_Init((PDMFilter_InitStruct *)&Filter);
+    // temp disabled
+    // PDM_Filter_Init((PDMFilter_InitStruct *)&Filter);
     
     /* Configure the GPIOs */
     WaveRecorder_GPIO_Init();
@@ -223,7 +224,8 @@ void AUDIO_REC_SPI_IRQHANDLER(void)
      
       volume = 50;
       
-      PDM_Filter_64_LSB((uint8_t *)InternalBuffer, (uint16_t *)pAudioRecBuf, volume , (PDMFilter_InitStruct *)&Filter);
+      // TODO temp disabled
+      // PDM_Filter_64_LSB((uint8_t *)InternalBuffer, (uint16_t *)pAudioRecBuf, volume , (PDMFilter_InitStruct *)&Filter);
       Data_Status = 1;       
     }
   }
